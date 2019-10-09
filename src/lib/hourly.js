@@ -15,9 +15,9 @@ export default class Cron extends Component {
     }
   }
   onHourChange(e) {
-    if (this.state.every && ((e.target.value > 0 && e.target.value < 24) || e.target.value == "")) {
+    if (this.state.every && ((e.target.value > 0 && e.target.value < 24) || e.target.value === "")) {
       let val = ["0", "0", "*", "*", "*", "?", "*"];
-      if (e.target.value == "") {
+      if (e.target.value === "") {
         val[2] = "";
       } else {
         val[2] = `0/${e.target.value}`;

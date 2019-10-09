@@ -21,7 +21,7 @@ export default class Cron extends Component {
     }
   }
   onDayChange(e) {
-    if ((e.target.value > 0 && e.target.value < 32) || e.target.value == "") {
+    if ((e.target.value > 0 && e.target.value < 32) || e.target.value === "") {
       let val = [
         "0",
         this.state.value[1] === "*" ? "0" : this.state.value[1],
@@ -31,7 +31,7 @@ export default class Cron extends Component {
         "?",
         "*"
       ];
-      if (e.target.value == "") {
+      if (e.target.value === "") {
         val[3] = "";
       } else {
         val[3] = `1/${e.target.value}`;

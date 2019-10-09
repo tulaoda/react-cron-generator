@@ -25,11 +25,11 @@ export default class Cron extends Component {
             this.state.value = this.props.value.replace(/,/g, '!').split(' ');
         }
         let val = this.state.value;
-        if((val[1].search('/') !== -1) && (val[2] == '*') && (val[3] == '1/1')) {
+        if((val[1].search('/') !== -1) && (val[2] === '*') && (val[3] === '1/1')) {
             this.state.selectedTab = tabs[0];
-        } else if((val[3] == '1/1')) {
+        } else if((val[3] === '1/1')) {
             this.state.selectedTab = tabs[1];
-        } else if((val[3].search('/') !== -1) || (val[5] == 'MON-FRI')) {
+        } else if((val[3].search('/') !== -1) || (val[5] === 'MON-FRI')) {
             this.state.selectedTab = tabs[2];
         } else if (val[3] === '?') {
             this.state.selectedTab = tabs[3];
