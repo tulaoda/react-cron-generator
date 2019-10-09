@@ -21,7 +21,7 @@ export default class Cron extends Component {
     this.state.value = this.props.value;
     return (
       <div className="well">
-        Every <input type="Number" onChange={this.onChange.bind(this)} value={this.state.value[1].split("/")[1]} min={1} max={60} /> minute(s)'
+        每隔 <input type="Number" onChange={this.onChange.bind(this)} value={this.state.value[1].split("/")[1]} min={1} max={60} /> 分钟(s)'
       </div>
     );
   }

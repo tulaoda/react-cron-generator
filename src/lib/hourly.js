@@ -53,14 +53,14 @@ export default class Cron extends Component {
               }}
               checked={this.state.every ? true : false}
             />
-            <span>&nbsp;Every &nbsp;</span>
+            <span>&nbsp;每隔 &nbsp;</span>
             <input
               disabled={this.state.every ? false : true}
               type="Number"
               onChange={this.onHourChange}
               value={this.state.value[2].split("/")[1] ? this.state.value[2].split("/")[1] : ""}
             />
-            <span>&nbsp;hour(s)&nbsp;</span>
+            <span>&nbsp;小时(s)&nbsp;</span>
           </div>
           <div className="well row well-small margin-right-0 margin-left-0">
             <div className="col-md-offset-2 col-md-6 text_align_right">

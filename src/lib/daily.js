@@ -64,14 +64,14 @@ export default class Cron extends Component {
             name="DailyRadio"
             checked={this.state.every ? true : false}
           />
-          &nbsp; Every &nbsp;
+          &nbsp; 每隔 &nbsp;
           <input
             disabled={this.state.every ? false : true}
             type="Number"
             onChange={this.onDayChange}
             value={this.state.value[3].split("/")[1] ? this.state.value[3].split("/")[1] : ""}
           />
-          &nbsp; day(s)
+          &nbsp; 天(s)
         </div>
         <div className="well well-small">
           <input
