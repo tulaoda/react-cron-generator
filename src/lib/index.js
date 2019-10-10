@@ -6,13 +6,16 @@ import Hourly from "./hourly";
 import Weekly from "./weekly";
 import Monthly from "./monthly";
 import Yearly from "./yearly";
-import "./cron-builder.css";
-const tabs = ["分钟", "小时", "天", "周", "月"]; //,'Yearly'
+import "./cron-builder.css"; //,'Yearly'
+import { Tabs } from "antd";
+const tabs = ["分钟", "小时", "天", "周", "月"];
+const { TabPane } = Tabs;
+
 export default class Cron extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //    selectedTab: tabs[0],
+      selectedTab: tabs[0]
     };
   }
   componentWillMount() {
@@ -65,6 +68,7 @@ export default class Cron extends Component {
   }
 
   tabChanged(tab) {
+    console.log(tab);
     this.setState({ selectedTab: tab, value: this.defaultValue(tab) });
     this.parentChange(this.defaultValue(tab));
   }
@@ -132,11 +136,33 @@ export default class Cron extends Component {
     }
   }
 
+  handleTabChange = () => {};
+
   render() {
+    const { selectedTab } = this.state;
     return (
       <div className="cron_builder">
-        <ul className="nav nav-tabs">{this.getHeaders()}</ul>
-        <div className="cron_builder_bordering">{this.getComponent(this.state.selectedTab)}</div>
+        {/* <ul className="nav nav-tabs">{this.getHeaders()}</ul> */}
+
+        <Tabs animated={false} activeKey={selectedTab} onChange={this.tabChanged.bind(this)}>
+          <TabPane tab={tabs[0]} key={tabs[0]}>
+            <Minutes value={this.state.value} onChange={this.onValueChange.bind(this)} />
+          </TabPane>
+          <TabPane tab={tabs[1]} key={tabs[1]}>
+            <Hourly value={this.state.value} onChange={this.onValueChange.bind(this)} />
+          </TabPane>
+          <TabPane tab={tabs[2]} key={tabs[2]}>
+            <Daily value={this.state.value} onChange={this.onValueChange.bind(this)} />
+          </TabPane>
+          <TabPane tab={tabs[3]} key={tabs[3]}>
+            <Weekly value={this.state.value} onChange={this.onValueChange.bind(this)} />
+          </TabPane>
+          <TabPane tab={tabs[4]} key={tabs[4]}>
+            <Monthly value={this.state.value} onChange={this.onValueChange.bind(this)} />
+          </TabPane>
+        </Tabs>
+
+        {/* <div className="cron_builder_bordering">{this.getComponent(this.state.selectedTab)}</div> */}
         {this.props.showResultText && <div className="cron-builder-bg">{this.getVal()}</div>}
         {this.props.showResultCron && (
           <div className="cron-builder-bg">

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Cron from "./lib";
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +15,6 @@ class App extends Component {
         <Cron
           onChange={e => {
             this.setState({ value: e });
-            console.log(e);
           }}
           value={this.state.value}
           showResultText={true}

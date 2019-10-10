@@ -30,9 +30,9 @@
 .cron_builder_bordering select option:hover {
     background-color: #086090;
 }
-.well-small input {
+/* .well-small input {
     width: auto !important;
-}
+} */
 .cron_builder_bordering  input[type='radio'] {
     margin-top: 0px;
     vertical-align: middle;
