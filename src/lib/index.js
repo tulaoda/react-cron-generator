@@ -6,7 +6,7 @@ import Hourly from "./hourly";
 import Weekly from "./weekly";
 import Monthly from "./monthly";
 import Yearly from "./yearly";
-import "./cron-builder.css"; //,'Yearly'
+import "./cron-builder.css"; 
 import { Tabs } from "antd";
 const tabs = ["分钟", "小时", "天", "周", "月"];
 const { TabPane } = Tabs;
@@ -142,8 +142,6 @@ export default class Cron extends Component {
     const { selectedTab } = this.state;
     return (
       <div className="cron_builder">
-        {/* <ul className="nav nav-tabs">{this.getHeaders()}</ul> */}
-
         <Tabs animated={false} activeKey={selectedTab} onChange={this.tabChanged.bind(this)}>
           <TabPane tab={tabs[0]} key={tabs[0]}>
             <Minutes value={this.state.value} onChange={this.onValueChange.bind(this)} />
@@ -161,8 +159,6 @@ export default class Cron extends Component {
             <Monthly value={this.state.value} onChange={this.onValueChange.bind(this)} />
           </TabPane>
         </Tabs>
-
-        {/* <div className="cron_builder_bordering">{this.getComponent(this.state.selectedTab)}</div> */}
         {this.props.showResultText && <div className="cron-builder-bg">{this.getVal()}</div>}
         {this.props.showResultCron && (
           <div className="cron-builder-bg">

@@ -11,8 +11,6 @@ export default class Cron extends Component {
     };
 
     this.onDayChange = this.onDayChange.bind(this);
-    // this.onAtHourChange = this.onAtHourChange.bind(this);
-    // this.onAtMinuteChange = this.onAtMinuteChange.bind(this);
   }
   componentWillMount() {
     this.state.value = this.props.value;
@@ -66,12 +64,6 @@ export default class Cron extends Component {
             checked={this.state.every ? true : false}
           />
           &nbsp; 每隔 &nbsp;
-          {/* <input
-            disabled={this.state.every ? false : true}
-            type="Number"
-            onChange={this.onDayChange}
-            value={this.state.value[3].split("/")[1] ? this.state.value[3].split("/")[1] : ""}
-          /> */}
           <InputNumber min={1} defaultValue={1} onChange={this.onDayChange} disabled={this.state.every ? false : true} />
           &nbsp; 天(s)
         </div>
@@ -89,7 +81,7 @@ export default class Cron extends Component {
           &nbsp;每个工作日&nbsp;
         </div>
         <div className="well well-small">
-          &nbsp; 开始时间&nbsp;
+          开始时间&nbsp;
           <TimePicker format={format} onChange={this.handleTimeChange} />
         </div>
       </div>

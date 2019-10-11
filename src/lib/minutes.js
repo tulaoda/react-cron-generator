@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-
+import { InputNumber } from "antd";
 export default class Cron extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  onChange(e) {
-    if ((e.target.value > 0 && e.target.value < 60) || e.target.value === "") {
+  onChange(value) {
+    if ((value > 0 && value < 60) || value === "") {
       let val = ["0", "*", "*", "*", "*", "?", "*"];
-
-      if (e.target.value === "") {
+      if (value === "") {
         val[1] = "";
       } else {
-        val[1] = `0/${e.target.value}`;
+        val[1] = `0/${value}`;
       }
       this.props.onChange(val);
     }
@@ -21,7 +20,7 @@ export default class Cron extends Component {
     this.state.value = this.props.value;
     return (
       <div className="well">
-        每隔 <input type="Number" onChange={this.onChange.bind(this)} value={this.state.value[1].split("/")[1]} min={1} max={60} /> 分钟(s)'
+        每隔 <InputNumber onChange={this.onChange.bind(this)} defaultValue={1} min={1} max={60} /> 分钟(s)'
       </div>
     );
   }

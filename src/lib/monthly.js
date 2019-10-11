@@ -12,8 +12,6 @@ export default class Cron extends Component {
 
     this.onDayChange = this.onDayChange.bind(this);
     this.onLastDayChange = this.onLastDayChange.bind(this);
-    // this.onAtHourChange = this.onAtHourChange.bind(this);
-    // this.onAtMinuteChange = this.onAtMinuteChange.bind(this);
   }
   componentWillMount() {
     this.state.value = this.props.value;
@@ -70,16 +68,6 @@ export default class Cron extends Component {
     this.props.onChange(val);
   };
 
-  // onAtHourChange(e) {
-  //   let val = this.state.value;
-  //   val[2] = `${e.target.value}`;
-  //   this.props.onChange(val);
-  // }
-  // onAtMinuteChange(e) {
-  //   let val = this.state.value;
-  //   val[1] = `${e.target.value}`;
-  //   this.props.onChange(val);
-  // }
   render() {
     this.state.value = this.props.value;
     return (
@@ -104,7 +92,6 @@ export default class Cron extends Component {
             checked={this.state.every === "1" ? true : false}
           />
           &nbsp;每月的第&nbsp;
-          {/* <input readOnly={this.state.every !== "1"} type="number" value={this.state.value[3]} onChange={this.onDayChange} /> */}
           <InputNumber min={1} defaultValue={1} onChange={this.onDayChange} disabled={this.state.every !== "1"} />
           &nbsp;天
         </div>
@@ -169,8 +156,7 @@ export default class Cron extends Component {
             name="MonthlyRadio"
             checked={this.state.every === "4" ? true : false}
           />
-          月底前
-          {/* <input disabled={this.state.every !== "4"} type="number" value={this.state.value[3].split("-")[1]} onChange={this.onLastDayChange} /> */}
+          &nbsp;月底前&nbsp;
           <InputNumber min={1} defaultValue={1} onChange={this.onLastDayChange} disabled={this.state.every !== "4"} />
           &nbsp;天
         </div>
