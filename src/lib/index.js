@@ -6,7 +6,7 @@ import Hourly from "./hourly";
 import Weekly from "./weekly";
 import Monthly from "./monthly";
 import Yearly from "./yearly";
-import "./cron-builder.css"; 
+import "./cron-builder.css";
 import { Tabs } from "antd";
 const tabs = ["分钟", "小时", "天", "周", "月"];
 const { TabPane } = Tabs;
@@ -46,41 +46,26 @@ export default class Cron extends Component {
     switch (tab) {
       case tabs[0]:
         return ["0", "0/1", "*", "*", "*", "?", "*"];
-        break;
       case tabs[1]:
         return ["0", "0", "00", "1/1", "*", "?", "*"];
-        break;
       case tabs[2]:
         return ["0", "0", "00", "1/1", "*", "?", "*"];
-        break;
       case tabs[3]:
         return ["0", "0", "00", "?", "*", "*", "*"];
-        break;
       case tabs[4]:
         return ["0", "0", "00", "1", "1/1", "?", "*"];
-        break;
       case tabs[5]:
         return ["0", "0", "00", "1", "1/1", "?", "*"];
-        break;
       default:
         return;
     }
   }
 
   tabChanged(tab) {
-    console.log(tab);
     this.setState({ selectedTab: tab, value: this.defaultValue(tab) });
     this.parentChange(this.defaultValue(tab));
   }
-  getHeaders() {
-    return tabs.map(d => {
-      return (
-        <li className={this.state.selectedTab === d ? "active" : ""}>
-          <a onClick={this.tabChanged.bind(this, d)}>{d}</a>
-        </li>
-      );
-    });
-  }
+
   onValueChange(val) {
     if (val && val.length) {
       this.setState({ value: val });
@@ -110,33 +95,6 @@ export default class Cron extends Component {
     }
     return "-";
   }
-
-  getComponent(tab) {
-    switch (tab) {
-      case tabs[0]:
-        return <Minutes value={this.state.value} onChange={this.onValueChange.bind(this)} />;
-        break;
-      case tabs[1]:
-        return <Hourly value={this.state.value} onChange={this.onValueChange.bind(this)} />;
-        break;
-      case tabs[2]:
-        return <Daily value={this.state.value} onChange={this.onValueChange.bind(this)} />;
-        break;
-      case tabs[3]:
-        return <Weekly value={this.state.value} onChange={this.onValueChange.bind(this)} />;
-        break;
-      case tabs[4]:
-        return <Monthly value={this.state.value} onChange={this.onValueChange.bind(this)} />;
-        break;
-      case tabs[5]:
-        return <Yearly value={this.state.value} onChange={this.onValueChange.bind(this)} />;
-        break;
-      default:
-        return;
-    }
-  }
-
-  handleTabChange = () => {};
 
   render() {
     const { selectedTab } = this.state;

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Cron from "./lib";
-import { Button } from 'antd';
 import 'antd/dist/antd.css';
 
 class App extends Component {
