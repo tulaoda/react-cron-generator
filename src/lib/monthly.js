@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TimePicker } from "antd";
+import { TimePicker,InputNumber } from "antd";
 const format = "HH:mm";
 
 export default class Cron extends Component {
@@ -27,8 +27,8 @@ export default class Cron extends Component {
       this.state.every = "1";
     }
   }
-  onDayChange(e) {
-    if ((parseInt(e.target.value) > 0 && parseInt(e.target.value) <= 31) || e.target.value === "") {
+  onDayChange(value) {
+    if ((parseInt(value) > 0 && parseInt(value) <= 31) || value === "") {
       let val = [
         "0",
         this.state.value[1] === "*" ? "0" : this.state.value[1],
@@ -38,12 +38,12 @@ export default class Cron extends Component {
         "?",
         "*"
       ];
-      val[3] = `${e.target.value}`;
+      val[3] = value;
       this.props.onChange(val);
     }
   }
-  onLastDayChange(e) {
-    if ((parseInt(e.target.value) >> 0 && parseInt(e.target.value) <= 31) || e.target.value === "") {
+  onLastDayChange(value) {
+    if ((parseInt(value) >> 0 && parseInt(value) <= 31) || value === "") {
       let val = [
         "0",
         this.state.value[1] === "*" ? "0" : this.state.value[1],
@@ -53,10 +53,10 @@ export default class Cron extends Component {
         "?",
         "*"
       ];
-      if (e.target.value === "") {
+      if (value === "") {
         val[3] = "";
       } else {
-        val[3] = `L-${e.target.value}`;
+        val[3] = `L-${value}`;
       }
       this.props.onChange(val);
     }
@@ -104,7 +104,8 @@ export default class Cron extends Component {
             checked={this.state.every === "1" ? true : false}
           />
           &nbsp;每月的第&nbsp;
-          <input readOnly={this.state.every !== "1"} type="number" value={this.state.value[3]} onChange={this.onDayChange} />
+          {/* <input readOnly={this.state.every !== "1"} type="number" value={this.state.value[3]} onChange={this.onDayChange} /> */}
+          <InputNumber min={1} defaultValue={1} onChange={this.onDayChange} disabled={this.state.every !== "1"} />
           &nbsp;天
         </div>
         <div className="well well-small">
@@ -169,11 +170,12 @@ export default class Cron extends Component {
             checked={this.state.every === "4" ? true : false}
           />
           月底前
-          <input readOnly={this.state.every !== "4"} type="number" value={this.state.value[3].split("-")[1]} onChange={this.onLastDayChange} />
+          {/* <input disabled={this.state.every !== "4"} type="number" value={this.state.value[3].split("-")[1]} onChange={this.onLastDayChange} /> */}
+          <InputNumber min={1} defaultValue={1} onChange={this.onLastDayChange} disabled={this.state.every !== "4"} />
           &nbsp;天
         </div>
         <div className="well well-small">
-          &nbsp; 开始时间 &nbsp;
+         开始时间 &nbsp;
           <TimePicker format={format} onChange={this.handleTimeChange} />
         </div>
       </div>
