@@ -17,6 +17,7 @@
   "author": "Sojin antony",
   "dependencies": {
     "antd": "^3.23.6",
+    "cron-parser": "^2.13.0",
     "cronstrue": "^1.72.0",
     "moment": "^2.24.0"
   },

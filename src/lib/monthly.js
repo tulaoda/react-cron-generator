@@ -32,9 +32,8 @@ export default class Cron extends Component {
         this.state.value[1] === "*" ? "0" : this.state.value[1],
         this.state.value[2] === "*" ? "0" : this.state.value[2],
         this.state.value[3],
-        "1/1",
-        "?",
-        "*"
+        "*",
+        "?"
       ];
       val[3] = value;
       this.props.onChange(val);
@@ -47,9 +46,8 @@ export default class Cron extends Component {
         this.state.value[1] === "*" ? "0" : this.state.value[1],
         this.state.value[2] === "*" ? "0" : this.state.value[2],
         this.state.value[3],
-        "1/1",
-        "?",
-        "*"
+        "*",
+        "?"
       ];
       if (value === "") {
         val[3] = "";
@@ -82,9 +80,8 @@ export default class Cron extends Component {
                 this.state.value[1] === "*" ? "0" : this.state.value[1],
                 this.state.value[2] === "*" ? "0" : this.state.value[2],
                 "1",
-                "1/1",
-                "?",
-                "*"
+                "*",
+                "?"
               ]);
             }}
             value="1"
@@ -95,7 +92,7 @@ export default class Cron extends Component {
           <InputNumber min={1} defaultValue={1} onChange={this.onDayChange} disabled={this.state.every !== "1"} />
           &nbsp;天
         </div>
-        <div className="well well-small">
+        {/* <div className="well well-small">
           <input
             onChange={e => {
               this.setState({ every: e.target.value });
@@ -105,8 +102,7 @@ export default class Cron extends Component {
                 this.state.value[2] === "*" ? "0" : this.state.value[2],
                 "L",
                 "*",
-                "?",
-                "*"
+                "?"
               ]);
             }}
             type="radio"
@@ -115,8 +111,8 @@ export default class Cron extends Component {
             checked={this.state.every === "2" ? true : false}
           />
           &nbsp; 每月的最后一天&nbsp;
-        </div>
-        <div className="well well-small">
+        </div> */}
+        {/* <div className="well well-small">
           <input
             onChange={e => {
               this.setState({ every: e.target.value });
@@ -126,8 +122,7 @@ export default class Cron extends Component {
                 this.state.value[2] === "*" ? "0" : this.state.value[2],
                 "LW",
                 "*",
-                "?",
-                "*"
+                "?"
               ]);
             }}
             type="radio"
@@ -136,8 +131,8 @@ export default class Cron extends Component {
             checked={this.state.every === "3" ? true : false}
           />
           &nbsp; 在每个月的最后一个工作日&nbsp;
-        </div>
-        <div className="well well-small">
+        </div> */}
+        {/* <div className="well well-small">
           <input
             type="radio"
             onChange={e => {
@@ -148,8 +143,7 @@ export default class Cron extends Component {
                 this.state.value[2] === "*" ? "0" : this.state.value[2],
                 `L-${1}`,
                 "*",
-                "?",
-                "*"
+                "?"
               ]);
             }}
             value="4"
@@ -159,7 +153,7 @@ export default class Cron extends Component {
           &nbsp;月底前&nbsp;
           <InputNumber min={1} defaultValue={1} onChange={this.onLastDayChange} disabled={this.state.every !== "4"} />
           &nbsp;天
-        </div>
+        </div> */}
         <div className="well well-small">
          开始时间 &nbsp;
           <TimePicker format={format} onChange={this.handleTimeChange} />

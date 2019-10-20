@@ -7,11 +7,11 @@ export default class Cron extends Component {
   }
   onChange(value) {
     if ((value > 0 && value < 60) || value === "") {
-      let val = ["0", "*", "*", "*", "*", "?", "*"];
+      let val = ["0", "*", "*", "*", "*", "?"];
       if (value === "") {
         val[1] = "";
       } else {
-        val[1] = `0/${value}`;
+        val[1] = `*/${value}`;
       }
       this.props.onChange(val);
     }

@@ -1,15 +1,22 @@
 import React, { Component } from "react";
+import moment from "moment";
 import cronstrue from "cronstrue";
 import Minutes from "./minutes";
 import Daily from "./daily";
 import Hourly from "./hourly";
 import Weekly from "./weekly";
 import Monthly from "./monthly";
-import Yearly from "./yearly";
+
+// import Yearly from "./yearly";
+import "antd/dist/antd.css";
 import "./cron-builder.css";
 import { Tabs } from "antd";
 const tabs = ["分钟", "小时", "天", "周", "月"];
 const { TabPane } = Tabs;
+
+const dateMinute = "YYYY-MM-DD HH:mm";
+
+const CronParser = require("cron-parser");
 
 export default class Cron extends Component {
   constructor(props) {
@@ -20,7 +27,7 @@ export default class Cron extends Component {
   }
   componentWillMount() {
     if (!this.props.value || this.props.value.split(" ").length !== 7) {
-      this.state.value = ["0", "0", "00", "1/1", "*", "?", "*"];
+      this.state.value = ["0", "0", "00", "*", "*", "?"];
       this.state.selectedTab = tabs[0];
       this.parentChange(this.state.value);
     } else {
@@ -45,17 +52,17 @@ export default class Cron extends Component {
   defaultValue(tab) {
     switch (tab) {
       case tabs[0]:
-        return ["0", "0/1", "*", "*", "*", "?", "*"];
+        return ["0", "0/1", "*", "*", "*", "?"];
       case tabs[1]:
-        return ["0", "0", "00", "1/1", "*", "?", "*"];
+        return ["0", "0", "00", "*", "*", "?"];
       case tabs[2]:
-        return ["0", "0", "00", "1/1", "*", "?", "*"];
+        return ["0", "0", "00", "*", "*", "?"];
       case tabs[3]:
-        return ["0", "0", "00", "?", "*", "*", "*"];
+        return ["0", "0", "00", "?", "*", "*"];
       case tabs[4]:
-        return ["0", "0", "00", "1", "1/1", "?", "*"];
+        return ["0", "0", "00", "1", "*", "?"];
       case tabs[5]:
-        return ["0", "0", "00", "1", "1/1", "?", "*"];
+        return ["0", "0", "00", "1", "*", "?"];
       default:
         return;
     }
@@ -70,9 +77,19 @@ export default class Cron extends Component {
     if (val && val.length) {
       this.setState({ value: val });
     } else {
-      this.setState({ value: ["0", "0", "00", "1/1", "*", "?", "*"] });
-      val = ["0", "0", "00", "1/1", "*", "?", "*"];
+      this.setState({ value: ["0", "0", "00", "*", "*", "?"] });
+      val = ["0", "0", "00", "*", "*", "?"];
     }
+    const newVal = val.toString().replace(/,/g, " ").replace(/!/g, ",");
+    console.log("newVal", newVal);
+    var interval = CronParser.parseExpression(newVal);
+
+    // var interval = CronParser.parseExpression(newVal);
+    console.log("Date: ", moment(interval.next().toString()).format(dateMinute));
+    console.log("Date: ", moment(interval.next().toString()).format(dateMinute));
+   
+    console.log();
+    
     this.parentChange(val);
   }
 
@@ -80,7 +97,6 @@ export default class Cron extends Component {
     let newVal = "";
     newVal = val.toString().replace(/,/g, " ");
     newVal = newVal.replace(/!/g, ",");
-    console.log(newVal);
     this.props.onChange(newVal);
   }
   getVal() {

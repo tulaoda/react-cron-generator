@@ -28,13 +28,12 @@ export default class Cron extends Component {
         this.state.value[2] === "*" ? "0" : this.state.value[2],
         "*",
         "*",
-        "?",
-        "*"
+        "?"
       ];
       if (value === "") {
         val[3] = "";
       } else {
-        val[3] = `1/${value}`;
+        val[3] = `*/${value}`;
       }
       this.props.onChange(val);
     }
@@ -71,7 +70,7 @@ export default class Cron extends Component {
           <input
             onClick={e => {
               this.setState({ every: false });
-              this.props.onChange(["0", this.state.value[1], this.state.value[2], "?", "*", "MON-FRI", "*"]);
+              this.props.onChange(["0", this.state.value[1], this.state.value[2], "?", "*", "MON-FRI"]);
             }}
             type="radio"
             value="2"
