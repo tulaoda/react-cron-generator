@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 export default class Cron extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
 
-  render() {
-    return <div>yearly</div>;
-  }
+    render() {
+        return <div>yearly</div>;
+    }
 }
